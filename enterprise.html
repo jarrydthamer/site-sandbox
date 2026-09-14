@@ -6,220 +6,142 @@
   <title>Urbyte Enterprise | Verify Mobile Fleet Allocation Waste</title>
   <meta name="description" content="Urbyte verifies unused telecommunications allocation across enterprise mobile fleets and produces evidence-backed records for cost, procurement, ESG and operational review.">
   <style>
-    :root {
-      --bg-terminal: #050507;
-      --bg-surface: #0b0c10;
-      --border-crisp: #1f222e;
-      --text-active: #ffffff;
-      --text-muted: #62687a;
-      --accent-status: #00ff66;
-      --font-mono: 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+     :root {
+      --bg-void: #030306;         /* Ultra-deep obsidian canvas space */
+      --bg-panel: #090a10;        /* Deep translucent dashboard panel layer */
+      --bg-card: #12141d;         /* Elevated feature card base texture */
+      --border-glow: rgba(255, 255, 255, 0.05); /* Razor-thin glass perimeter border */
+      --border-active: rgba(255, 255, 255, 0.12); /* Interactive element glow edge */
+      --text-pure: #ffffff;       /* Solid white primary headings */
+      --text-slate: #94a3b8;      /* Soft geometric copy tone */
+      --accent-neon: #00ff66;     /* Active functional indicator element */
+      
+      /* Linear SaaS Colorways inspired by your BRIX/Cybersecurity panel search */
+      --glow-blue: radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(0,0,0,0) 70%);
+      --glow-purple: radial-gradient(circle, rgba(147,51,234,0.12) 0%, rgba(0,0,0,0) 65%);
+      
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: 'SF Mono', 'Roboto Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background-color: var(--bg-terminal);
-      color: var(--text-active);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      line-height: 1.6;
-      padding: 1rem;
-    }
+body {
+  background-color: var(--bg-void);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px; /* Modern layout blueprint grid backdrop */
+  color: var(--text-slate);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+}
 
-    .system-header {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-crisp);
-      background-color: var(--bg-surface);
-      margin-bottom: 2rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-    }
+/* Glassmorphic Nav Ribbon */
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(9, 10, 16, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  border-radius: 8px;
+  margin-bottom: 3.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
 
-    .hero {
-      border: 1px solid var(--border-crisp);
-      background-color: var(--bg-surface);
-      padding: 2.5rem 1.5rem;
-      margin-bottom: 2rem;
-    }
+/* Translucent Hero Panel with Dynamic Rear Ambient Glow Filters */
+.hero {
+  position: relative;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 4.5rem 3rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
 
-    .meta-tag {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: var(--glow-blue);
+  pointer-events: none;
+  z-index: 0;
+}
+h1 {
+  font-family: var(--font-display);
+  color: var(--text-pure);
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  z-index: 1;
+  position: relative;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      line-height: 1.3;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
+p.lead {
+  color: var(--text-slate);
+  font-size: 1.15rem;
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+  z-index: 1;
+  position: relative;
+}
 
-    p.lead {
-      color: var(--text-active);
-      margin-bottom: 1.5rem;
-      max-width: 800px;
-    }
+/* Premium Fluid Interactive Triggers */
+.btn-group { display: flex; flex-wrap: wrap; gap: 1rem; z-index: 1; position: relative; }
 
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
+.btn {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-    .btn {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      padding: 0.75rem 1rem;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.btn-primary {
+  background-color: var(--text-pure);
+  color: var(--bg-void);
+  border: 1px solid var(--text-pure);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
 
-    .btn-primary {
-      background-color: var(--text-active);
-      color: var(--bg-terminal);
-      border: 1px solid var(--text-active);
-    }
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-pure);
+  border: 1px solid var(--border-glow);
+}
 
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--text-active);
-      border: 1px solid var(--border-crisp);
-    }
+.btn-primary:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
 
-    .hero-bullets {
-      list-style: none;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-crisp);
-      padding-top: 1rem;
-    }
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-active);
+}
+</style>
 
-    .hero-bullets li::before {
-      content: "◆ ";
-      color: var(--accent-status);
-    }
-
-    .system-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .panel {
-      border: 1px solid var(--border-crisp);
-      background-color: var(--bg-surface);
-      padding: 1.5rem;
-    }
-
-    .panel h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .table-scrollbox {
-      width: 100%;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid var(--border-crisp);
-      background-color: #000000;
-      margin: 1rem 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border-crisp);
-    }
-
-    th {
-      color: var(--text-muted);
-      font-weight: normal;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-    }
-
-    .bullet-list {
-      list-style: none;
-    }
-
-    .bullet-list li {
-      margin-bottom: 0.5rem;
-      position: relative;
-      padding-left: 1.25rem;
-      color: var(--text-muted);
-    }
-
-    .bullet-list li::before {
-      content: "▪";
-      position: absolute;
-      left: 0;
-      color: var(--text-muted);
-    }
-
-    .price-box {
-      background-color: #000000;
-      border: 1px solid var(--border-crisp);
-      padding: 1.5rem;
-      margin-top: 1rem;
-      text-align: center;
-    }
-
-    .price-value {
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: var(--accent-status);
-    }
-
-    .footer {
-      border-top: 1px solid var(--border-crisp);
-      padding-top: 1.5rem;
-      margin-top: 4rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    @media (min-width: 768px) {
-      body { padding: 2rem; }
-      .btn-group { flex-direction: row; }
-      .system-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-3-col { grid-template-columns: repeat(3, 1fr); }
-      h1 { font-size: 2.4rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <header class="system-header">
-      <div>URBYTE // SYS_LOC: /ENTERPRISE</div>
-      <div>[ COPY_STATUS: APPROVED_DRAFT ]</div>
-    </header>
+    
 
     <main class="hero">
       <div class="meta-tag">PAGE_TITLE // URBYTE ENTERPRISE</div>
