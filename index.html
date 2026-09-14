@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unused Mobile Data Australia | Independently Verify What You Did Not Use | Urbyte</title>
+  <meta name="description" content="Urbyte independently verifies the gap between the mobile data included in your plan and your recorded usage. Build an evidence-backed record without changing providers.">
+  <style>
+    :root {
+      --bg-terminal: #050507;
+      --bg-surface: #0b0c10;
+      --border-crisp: #1f222e;
+      --text-active: #ffffff;
+      --text-muted: #62687a;
+      --accent-status: #00ff66;
+      --font-mono: 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-terminal);
+      color: var(--text-active);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .system-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      margin-bottom: 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-tag {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p.lead {
+      color: var(--text-active);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: var(--text-active);
+      color: var(--bg-terminal);
+      border: 1px solid var(--text-active);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-active);
+      border: 1px solid var(--border-crisp);
+    }
+
+    .hero-bullets {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1rem;
+    }
+
+    .hero-bullets li::before {
+      content: "◆ ";
+      color: var(--accent-status);
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 1.5rem;
+    }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .bullet-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .bullet-list span {
+      color: var(--text-active);
+    }
+
+    .pricing-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .pricing-tier {
+      border: 1px solid var(--border-crisp);
+      background-color: #000000;
+      padding: 1.25rem;
+      height: auto !important;
+      min-height: min-content;
+      overflow: visible !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-crisp);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-title {
+      font-weight: bold;
+      color: var(--text-active);
+    }
+
+    .tier-price {
+      color: var(--accent-status);
+      font-weight: bold;
+    }
+
+    .faq-block {
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-crisp);
+      padding-bottom: 1.25rem;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--text-active);
+    }
+
+    .faq-question::before {
+      content: "Q // ";
+      color: var(--text-muted);
+    }
+
+    .faq-answer {
+      color: var(--text-muted);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1.5rem;
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 2rem; }
+      .btn-group { flex-direction: row; }
+      .system-grid { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 2.4rem; }
+      .pricing-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="system-header">
+      <div>URBYTE // SYS_LOC: /ROOT_CONSUMER</div>
+      <div>[ COPY_STATUS: APPROVED_DRAFT ]</div>
+    </header>
+
+    <main class="hero">
+      <div class="meta-tag">NAV_IDENTITY // INDEPENDENT VERIFICATION</div>
+      <h1>Verify the waste. Build the record.</h1>
+      <p class="lead">Urbyte independently verifies the mobile data included in your plan but not used during each eligible billing cycle. Your verified result is recorded as DBUs inside Urbyte.</p>
+      
+      <div class="btn-group">
+        <a class="btn btn-primary">Start Your Verification</a>
+        <a class="btn btn-secondary">Estimate My Unused Data</a>
+      </div>
+
+      <ul class="hero-bullets">
+        <li>Keep your existing mobile provider</li>
+        <li>Independent, evidence-based verification</li>
+        <li>DBUs are internal records, not currency or mobile data</li>
+        <li>Privacy-conscious document handling</li>
+      </ul>
+    </main>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SYS_ANOMALY // THE PROBLEM</div>
+      <h2>You pay for an allocation. The unused portion expires.</h2>
+      <p style="color: var(--text-muted); max-width: 900px;">Most mobile plans include more data than many people use. At the end of a billing cycle, that unused allocation may expire or roll over subject to provider rules. Until it is measured consistently, the gap remains invisible to the customer.</p>
+    </section>
+
+    <div class="system-grid">
+      <section class="panel">
+        <div class="meta-tag">SYS_ENGINE // HOW IT WORKS</div>
+        <h2>Four steps. One verified record.</h2>
+        <ol style="padding-left: 1.2rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">1. Keep your plan:</strong> Stay with your existing provider. Urbyte does not alter your service, plan or network.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">2. Submit eligible evidence:</strong> Provide the bill or recharge evidence needed to compare your included allocation with recorded usage.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">3. Complete the baseline:</strong> Complete three eligible billing-cycle conversions across the 84-day baseline. One conversion is processed at a time.</li>
+          <li><strong style="color: var(--text-active);">4. Establish your DBU record:</strong> At the fourth eligible conversion, qualifying verified waste becomes an established DBU record. One verified unused GB equals 10 DBUs.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <div class="meta-tag">RECORD_SPEC // DBUS</div>
+        <h2>A record of verified waste. Nothing more is implied.</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">A Data-Backed Unit is an internal, non-transferable Urbyte record derived from qualifying verified allocation waste. DBUs are not cash, cryptocurrency, legal tender, mobile data, stored value or a guaranteed benefit. Supported pathways will be identified only when they are approved and operational.</p>
+      </section>
+    </div>
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">CORE_POSTURE // WHY URBYTE</div>
+      <h2>Independent by design.</h2>
+      <ul class="bullet-list" style="margin-top: 0.5rem;">
+        <li><span>Urbyte verifies allocation waste. It does not resell or transfer mobile data.</span></li>
+        <li><span>Urbyte works alongside existing providers. No provider switch is required.</span></li>
+        <li><span>Verification uses only the evidence required to assess allocation and recorded usage.</span></li>
+        <li><span>The 84-day baseline reduces reliance on a single billing-cycle result.</span></li>
+        <li><span>Urbyte is Australian owned and operated.</span></li>
+      </ul>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SYS_ACCESS // MEMBERSHIP TIERS</div>
+      <h2>Start free. Choose paid access only if it suits you.</h2>
+      <div class="pricing-layout" style="margin-top: 1rem;">
+        
+        <div class="pricing-tier">
+          <div class="tier-header">
+            <span class="tier-title">FREE</span>
+            <span class="tier-price">$0 / MO</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Submit eligible evidence and build an internal DBU record. No card required.</p>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-header">
+            <span class="tier-title">BRONZE</span>
+            <span class="tier-price">$3.99 / MO</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Expanded platform access and verification support. Cancel at any time.</p>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-header">
+            <span class="tier-title">GOLD</span>
+            <span class="tier-price">$9.99 / MO</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Premium platform access and priority support. Cancel at any time.</p>
+        </div>
+
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">* Paid membership does not guarantee a financial return, benefit value or access to a future pathway.</p>
+    </section>
+
+    <section class="panel">
+      <div class="meta-tag">PROP_PATHWAY // GIVABIT</div>
+      <h2>A proposed direction for verified impact.</h2>
+      <p style="color: var(--text-muted);">Givabit is Urbyte’s proposed community-impact pathway. Where an approved partner, funding mechanism and operating process are available, eligible members may be able to request a direction toward a participating cause. No charity partnership or donation is implied until formally confirmed.</p>
+    </section>
+
+    <section class="panel">
+      <div class="meta-tag">FOUNDATION_LOG // WHY I BUILT THIS</div>
+      <h2>Why I built Urbyte.</h2>
+      <p style="color: var(--text-muted); font-style: italic; margin-bottom: 1rem;">"I built Urbyte because people should be able to see what they paid for and did not use. The first step is not a promise of value. It is independent proof. Urbyte turns an overlooked, recurring allocation gap into a consistent record that can be understood, tested and acted on responsibly."</p>
+      <div style="font-size: 0.85rem; font-weight: bold;">Jarryd Thamer<br><span style="color: var(--text-muted); font-size: 0.75rem; font-weight: normal;">Founder, Urbyte</span></div>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SYS_DOCUMENTATION // FAQ</div>
+      <h2>Clear answers.</h2>
+      <div style="margin-top: 1.5rem;">
+        <div class="faq-block">
+          <div class="faq-question">What does Urbyte verify?</div>
+          <div class="faq-answer">The difference between an eligible plan allocation and the usage recorded for the same billing period.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">What is a DBU?</div>
+          <div class="faq-answer">A Data-Backed Unit is an internal, non-transferable platform record. One verified unused GB equals 10 DBUs.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">Why is there an 84-day baseline?</div>
+          <div class="faq-answer">Three eligible billing cycles create a more consistent evidence record and reduce the effect of one-off anomalies.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">Does Urbyte return mobile data or cash?</div>
+          <div class="faq-answer">No. Urbyte does not control provider networks, return mobile data or guarantee cash or benefits.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">Do I need to change providers?</div>
+          <div class="faq-answer">No.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">Can prepaid customers participate?</div>
+          <div class="faq-answer">Yes, where eligible recharge evidence shows the included allocation and the unused amount at expiry.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">What information is required?</div>
+          <div class="faq-answer">Only the account, allocation, billing-period and usage information needed for verification. Urbyte does not require call, message or content data.</div>
+        </div>
+        <div class="faq-block">
+          <div class="faq-question">Is Urbyte live?</div>
+          <div class="faq-answer">Consumer sign-up and the current verification pathway are available. Future benefit and Givabit pathways remain subject to approval, funding and operational availability.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="border: 1px solid var(--accent-status); text-align: center; background-color: #001105;">
+      <div class="meta-tag" style="color: var(--accent-status);">TERMINAL_ACTION // FINAL CTA</div>
+      <h2 style="margin: 0.5rem 0 1rem 0;">What you paid for should be measurable.</h2>
+      <p style="max-width: 700px; margin: 0 auto 1.5rem auto; font-size: 0.9rem;">Start building an independent record of your unused mobile allocation.</p>
+      <a class="btn btn-primary" style="display: inline-block; max-width: 320px; width: 100%;">Start Verification Free</a>
+    </section>
+
+    <footer class="footer">
+      <div class="meta-tag">DISCLOSURE // CONTROLLED CLAIMS</div>
+      <p>Urbyte is an independent allocation-waste verification system. It is not a telecommunications provider and does not resell, transfer or claim ownership of unused mobile data. DBUs are internal, non-transferable platform records and are not currency, cryptocurrency, legal tender, stored value or a guaranteed financial entitlement. Eligibility and supported pathways remain subject to the platform terms and operational availability.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
