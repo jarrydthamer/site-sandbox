@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urbyte Enterprise | Verify Mobile Fleet Allocation Waste</title>
+  <meta name="description" content="Urbyte verifies unused telecommunications allocation across enterprise mobile fleets and produces evidence-backed records for cost, procurement, ESG and operational review.">
+  <style>
+    :root {
+      --bg-terminal: #050507;
+      --bg-surface: #0b0c10;
+      --border-crisp: #1f222e;
+      --text-active: #ffffff;
+      --text-muted: #62687a;
+      --accent-status: #00ff66;
+      --font-mono: 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-terminal);
+      color: var(--text-active);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .system-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      margin-bottom: 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-tag {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p.lead {
+      color: var(--text-active);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: var(--text-active);
+      color: var(--bg-terminal);
+      border: 1px solid var(--text-active);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-active);
+      border: 1px solid var(--border-crisp);
+    }
+
+    .hero-bullets {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1rem;
+    }
+
+    .hero-bullets li::before {
+      content: "◆ ";
+      color: var(--accent-status);
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 1.5rem;
+    }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .table-scrollbox {
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border-crisp);
+      background-color: #000000;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-crisp);
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: normal;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .bullet-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .price-box {
+      background-color: #000000;
+      border: 1px solid var(--border-crisp);
+      padding: 1.5rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .price-value {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--accent-status);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1.5rem;
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 2rem; }
+      .btn-group { flex-direction: row; }
+      .system-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="system-header">
+      <div>URBYTE // SYS_LOC: /ENTERPRISE</div>
+      <div>[ COPY_STATUS: APPROVED_DRAFT ]</div>
+    </header>
+
+    <main class="hero">
+      <div class="meta-tag">PAGE_TITLE // URBYTE ENTERPRISE</div>
+      <h1>Turn mobile fleet waste into verified operational evidence.</h1>
+      <p class="lead">Urbyte Enterprise ingests billing and usage evidence, verifies unused allocation across individual, pooled or mixed mobile fleets, and produces traceable records for cost, procurement, ESG and management review.</p>
+      
+      <div class="btn-group">
+        <a class="btn btn-primary">Request a Controlled Fleet Assessment</a>
+        <a class="btn btn-secondary">See the Verification Model</a>
+      </div>
+
+      <ul class="hero-bullets">
+        <li>No carrier change required</li>
+        <li>Individual, pooled and mixed fleets supported</li>
+        <li>Evidence lineage from source record to verified outcome</li>
+        <li>Unverifiable records excluded, not estimated into the result</li>
+      </ul>
+    </main>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SYS_DATA // CURRENT PROOF</div>
+      <h2>Proven across a 5,000-service controlled fleet dataset.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">The completed controlled proof processed 15,000 billing records across 5,000 services and three evidence cycles. It classified every service exactly once, excluded records that did not meet the verification standard, and preserved evidence lineage through governed execution and outcome verification.</p>
+      
+      <div class="table-scrollbox">
+        <table>
+          <thead>
+            <tr>
+              <th>Controlled proof measure</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Raw billing records</td><td>15,000</td></tr>
+            <tr><td>Distinct services</td><td>5,000</td></tr>
+            <tr><td style="color: var(--accent-status);">✓ Verified services</td><td style="color: var(--accent-status);">3,512</td></tr>
+            <tr><td>↳ Actionable verified services</td><td>3,485</td></tr>
+            <tr><td>↳ Verified with no action required</td><td>27</td></tr>
+            <tr><td style="color: var(--text-muted);">⚠ Unverifiable and excluded</td><td style="color: var(--text-muted);">1,488</td></tr>
+            <tr style="background-color: #0d0e12;"><td style="font-weight: bold;">Reconciliation</td><td style="font-weight: bold;">All 5,000 services classified exactly once</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted);">* These are controlled proof results, not client outcomes or market-wide performance claims.</p>
+    </section>
+    <div class="system-grid">
+      <section class="panel">
+        <div class="meta-tag">EXEC_PATH // HOW IT WORKS</div>
+        <h2>Evidence in. Verified waste out.</h2>
+        <ol style="padding-left: 1.2rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">1. Ingest:</strong> Urbyte receives agreed billing, allocation and usage evidence through a controlled file-based process. Current proof uses asynchronous evidence ingestion.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">2. Validate:</strong> The system checks evidence completeness, billing-period continuity, allocation structure and usage validity.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">3. Verify:</strong> Urbyte calculates qualifying unused allocation using the correct method for individual, pooled or mixed fleet structures.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">4. Govern:</strong> Keelo receives verified conditions, applies authority and ownership controls, and governs any authorised action through a controlled external boundary.</li>
+          <li><strong style="color: var(--text-active);">5. Reconcile:</strong> Every service is reconciled as actionable verified, verified with no action required, or unverifiable. Receipts and outcomes remain linked to source evidence.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <div class="meta-tag">SYS_OUTPUTS // DECISION-GRADE PACKAGE</div>
+        <h2>A decision-grade evidence package.</h2>
+        <ul class="bullet-list">
+          <li><span style="color: var(--text-active);">Verified allocation-waste register</span></li>
+          <li><span style="color: var(--text-active);">Actionable, no-action and unverifiable classifications</span></li>
+          <li><span style="color: var(--text-active);">Evidence provenance and reconciliation record</span></li>
+          <li><span style="color: var(--text-active);">Controlled action and receipt record where authorised</span></li>
+          <li><span style="color: var(--text-active);">Management summary for cost, procurement and ESG review</span></li>
+          <li><span style="color: var(--text-active);">Data-quality exceptions requiring correction or further evidence</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">PRICING_ENGINE // COMMERCIAL MODEL</div>
+      <h2>Pricing follows the evidence surface.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Enterprise verification is priced per service record processed per completed evidence cycle. This applies to individual, pooled and mixed fleets because ingestion, validation and reconciliation scale with the number of services and evidence cycles.</p>
+      <div class="price-box">
+        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">VERIFICATION PRICE</div>
+        <div class="price-value">$3</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted);">per service per completed evidence cycle</div>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;"><strong style="color: var(--text-active);">Example:</strong> 1,000 services × 3 evidence cycles × $3 = $9,000 verification fee. Additional execution, reporting, ESG evidence or Keelo operating services are scoped separately.</p>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">GOV_METRIC // ESG AND CSR</div>
+      <h2>Evidence before reporting.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Urbyte can support digital-efficiency, waste-reduction and social-impact reporting by linking each reported result to qualifying evidence. Any donation must occur separately in Australian dollars through an approved payment and recipient process. DBUs do not themselves constitute a donation, tax deduction or financial asset.</p>
+      <ul class="bullet-list" style="font-size: 0.85rem;">
+        <li><span>Supports ISO 14001-aligned evidence management and continual-improvement review</span></li>
+        <li><span>Supports controlled ESG and CSR reporting inputs</span></li>
+        <li><span>Separates verified waste, internal DBU records, cash settlement and donation receipts</span></li>
+        <li><span>Requires independent legal, accounting and tax advice for external treatment</span></li>
+      </ul>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SEC_POSTURE // SECURITY AND DATA HANDLING</div>
+      <h2>Minimum necessary evidence. Controlled boundaries.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Current controlled proofs use file-based billing evidence and governed external execution. Production integrations, live carrier APIs, service commitments and customer-specific retention controls require a separately approved implementation scope.</p>
+      <div class="system-grid grid-3-col" style="margin-top: 1rem; gap: 1rem;">
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ ISOLATION ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Organisation-isolated records</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ APPEND_ONLY ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Append-only evidence and execution events</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ IDEMPOTENCY ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Expected-version and idempotency controls</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ ENFORCEMENT ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Authority and accountable-owner enforcement</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ DURABILITY ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Durable external receipts and outcome verification</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--accent-status); font-weight: bold; margin-bottom: 0.25rem;">[ OBLIGATIONS ]</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Unresolved obligations retained for review</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">TARGET_COHORT // WHO IT IS FOR</div>
+      <h2>For organisations responsible for the telecommunications bill.</h2>
+      <ul class="bullet-list" style="padding-top: 0.5rem;">
+        <li><strong style="color: var(--text-active);">Finance and commercial leaders</strong> seeking verified cost evidence</li>
+        <li><strong style="color: var(--text-active);">Procurement teams</strong> reviewing plan and fleet allocation</li>
+        <li><strong style="color: var(--text-active);">IT and mobility teams</strong> managing service structures</li>
+        <li><strong style="color: var(--text-active);">ESG and sustainability teams</strong> requiring evidence-backed reporting</li>
+        <li><strong style="color: var(--text-active);">Risk, legal and assurance teams</strong> reviewing provenance and control</li>
+      </ul>
+    </section>
+
+    <section class="panel" style="border: 1px solid var(--accent-status); text-align: center; background-color: #001105;">
+      <div class="meta-tag" style="color: var(--accent-status);">TERMINAL_ACTION // FINAL CTA</div>
+      <h2 style="margin: 0.5rem 0 1rem 0;">Verify the fleet before changing the fleet.</h2>
+      <p style="max-width: 700px; margin: 0 auto 1.5rem auto; font-size: 0.9rem;">Begin with a controlled assessment of your actual billing and usage evidence. Urbyte will classify the evidence, quantify verified allocation waste and identify the records that require correction or action.</p>
+      <a class="btn btn-primary" style="display: inline-block; max-width: 400px; width: 100%;">Request a Controlled Fleet Assessment</a>
+    </section>
+
+    <footer class="footer">
+      <div class="meta-tag">DISCLOSURE // SCOPE AND TREATMENT</div>
+      <p>Urbyte verifies allocation waste. It does not provide telecommunications services or resell unused data. DBUs are internal, non-transferable records. Any accounting, tax, ESG, donation or financial treatment depends on the facts, a separate approved transaction where required, and independent professional advice.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
