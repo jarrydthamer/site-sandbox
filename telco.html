@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urbyte Telco & MVNO | Independent Allocation-Waste Verification</title>
+  <meta name="description" content="Urbyte gives carriers and MVNOs an independent, out-of-band method to verify unused allocation and test customer, fleet and impact pathways without changing the network.">
+  <style>
+    :root {
+      --bg-terminal: #050507;
+      --bg-surface: #0b0c10;
+      --border-crisp: #1f222e;
+      --text-active: #ffffff;
+      --text-muted: #62687a;
+      --accent-status: #00ff66;
+      --font-mono: 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-terminal);
+      color: var(--text-active);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .system-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      margin-bottom: 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-tag {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p.lead {
+      color: var(--text-active);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: var(--text-active);
+      color: var(--bg-terminal);
+      border: 1px solid var(--text-active);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-active);
+      border: 1px solid var(--border-crisp);
+    }
+
+    .hero-bullets {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1rem;
+    }
+
+    .hero-bullets li::before {
+      content: "◆ ";
+      color: var(--accent-status);
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel {
+      border: 1px solid var(--border-crisp);
+      background-color: var(--bg-surface);
+      padding: 1.5rem;
+    }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .bullet-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .bullet-list span {
+      color: var(--text-active);
+    }
+
+    .table-scrollbox {
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border-crisp);
+      background-color: #000000;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-crisp);
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: normal;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border-crisp);
+      padding-top: 1.5rem;
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 2rem; }
+      .btn-group { flex-direction: row; }
+      .system-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="system-header">
+      <div>URBYTE // SYS_LOC: /TELCO_MVNO</div>
+      <div>[ COPY_STATUS: APPROVED_DRAFT ]</div>
+    </header>
+
+    <main class="hero">
+      <div class="meta-tag">NAV_IDENTITY // OUT-OF-BAND LAYER</div>
+      <h1>Independent verification beside the network. Not inside it.</h1>
+      <p class="lead">Urbyte gives carriers and MVNOs a controlled way to verify unused customer or fleet allocation, establish evidence-backed records and test retention, efficiency and community-impact pathways without changing the core network or pricing model.</p>
+      
+      <div class="btn-group">
+        <a class="btn btn-primary">Discuss a Controlled Pilot</a>
+        <a class="btn btn-secondary">Review the Operating Model</a>
+      </div>
+
+      <ul class="hero-bullets">
+        <li>Carrier-adjacent and provider-agnostic</li>
+        <li>Controlled file-based ingestion proven</li>
+        <li>No network write access required for the current model</li>
+        <li>Every result reconciled to source evidence</li>
+      </ul>
+    </main>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">STRATEGIC_VAL // COMMERCIAL CASE</div>
+      <h2>Make an existing allocation gap operationally useful.</h2>
+      <p style="color: var(--text-muted); max-width: 900px;">Unused allocation already exists within current plan structures. Urbyte does not characterise that gap as carrier failure and does not claim ownership of it. Urbyte provides an independent evidence layer that can help a provider measure the gap consistently, test customer responses and assess commercially constructive pathways.</p>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">SYS_EXECUTION // CONTROLLED PROOF</div>
+      <h2>The transaction mechanics have been demonstrated.</h2>
+      <p style="color: var(--text-muted);">Urbyte and Keelo have completed controlled fleet and data-centre proofs covering evidence ingestion, verification, authority, accountable ownership, governed external execution, durable receipts, outcome verification and exact reconciliation.</p>
+      
+      <div class="table-scrollbox">
+        <table>
+          <thead>
+            <tr>
+              <th>PROVEN TRANSACTION CORE</th>
+              <th>METRIC / POSTURE</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Controlled fleet proof</td><td>5,000 services processed</td><td style="color: var(--accent-status);">[ COMPLETED ]</td></tr>
+            <tr><td>Data-centre execution proof</td><td>5,000 assets / 84-day baseline</td><td style="color: var(--accent-status);">[ COMPLETED ]</td></tr>
+            <tr><td>Duplicate execution logs</td><td>Zero overlapping records permitted</td><td style="color: var(--text-active);">[ PREVENTED ]</td></tr>
+            <tr><td>Unverifiable evidence records</td><td>Flawed input sources dropped from dataset</td><td style="color: var(--text-muted);">[ EXCLUDED ]</td></tr>
+            <tr><td>External platform actions</td><td>Bound natively to durable records</td><td style="color: var(--text-active);">[ LINKED ]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">* These results demonstrate controlled mechanics. They do not represent a live carrier deployment, production SLA or verified churn outcome.</p>
+    </section>
+    <div class="system-grid">
+      <section class="panel">
+        <div class="meta-tag">SYS_ENGINE // OPERATING MODEL</div>
+        <h2>Start outside the production network.</h2>
+        <ol style="padding-left: 1.2rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">1. Evidence scope:</strong> Agree the cohort, billing periods, allocation structure and minimum evidence fields.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">2. Controlled ingestion:</strong> Provide de-identified CSV, CDR-derived or equivalent records through the agreed controlled channel.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">3. Independent verification:</strong> Urbyte validates evidence and calculates qualifying unused allocation.</li>
+          <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-active);">4. Governed decision:</strong> Keelo maintains persistent state, authority, ownership and the permitted action boundary.</li>
+          <li><strong style="color: var(--text-active);">5. Outcome measurement:</strong> Approved actions produce durable receipts and verified outcomes for reconciliation and pilot review.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <div class="meta-tag">PILOT_HYPOTHESIS // WHAT A PILOT CAN TEST</div>
+        <h2>Defined hypotheses. Measurable evidence.</h2>
+        <ul class="bullet-list">
+          <li><span>Prevalence and distribution of verified unused allocation</span></li>
+          <li><span>Evidence quality across plan and service structures</span></li>
+          <li><span>Customer engagement with an independent verification record</span></li>
+          <li><span>Operational handling of exceptions and unverifiable records</span></li>
+          <li><span>Approved retention or community-impact pathways</span></li>
+          <li><span>Cost, control and integration requirements for the next stage</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">ENV_BOUNDS // SYSTEM BOUNDARIES</div>
+      <h2>Urbyte does not need to control the carrier environment.</h2>
+      <ul class="bullet-list">
+        <li><span>No OSS or BSS write access in the controlled pilot model</span></li>
+        <li><span>No change to network operation, service entitlement or plan pricing</span></li>
+        <li><span>No resale, transfer or ownership claim over unused mobile data</span></li>
+        <li><span>No customer outcome inferred without evidence</span></li>
+        <li><span>No live API, white-label deployment or SLA represented as current unless separately contracted and proven</span></li>
+      </ul>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">RECORD_SPEC // DBUS</div>
+      <h2>Internal records, not a financial instrument.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Qualifying verified waste may be recorded as Data-Backed Units inside Urbyte. DBUs are internal, non-transferable records. They are not currency, cryptocurrency, legal tender, mobile data, stored value or a guaranteed entitlement. Any funded benefit or donation occurs through a separate approved Australian-dollar process.</p>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">INTEGRATION_FLOW // PATHWAY TO DEPLOYMENT</div>
+      <h2>Prove first. Integrate second.</h2>
+      <div class="system-grid grid-3-col" style="gap: 1rem; margin-top: 1rem;">
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_01</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Confidentiality</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Mutual confidentiality and pilot scope.</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_02</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Schema Mapping</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Controlled evidence sample and schema mapping.</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_03</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Classification</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Verification, classification and reconciliation.</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_04</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Pathway Test</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Authorised pathway test with measurable outcomes.</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_05</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Assessment</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Production integration assessment.</p>
+        </div>
+        <div style="border: 1px solid var(--border-crisp); padding: 1rem; background-color: #000;">
+          <div style="color: var(--text-muted); font-size: 0.7rem;">STAGE_06</div>
+          <div style="font-weight: bold; margin: 0.25rem 0;">Deployment</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Commercial deployment only after security, legal and operational approval.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-bottom: 2rem;">
+      <div class="meta-tag">COMM_MODELS // COMMERCIAL OPTIONS</div>
+      <h2>Scoped to the provider and proof objective.</h2>
+      <ul class="bullet-list" style="padding-top: 0.5rem;">
+        <li><span>Paid verification pilot</span></li>
+        <li><span>Per-service, per-evidence-cycle verification</span></li>
+        <li><span>Enterprise or provider reporting package</span></li>
+        <li><span>Controlled pathway execution fee</span></li>
+        <li><span>Production licensing or white-label terms following successful proof</span></li>
+      </ul>
+    </section>
+
+    <section class="panel" style="border: 1px solid var(--accent-status); text-align: center; background-color: #001105;">
+      <div class="meta-tag" style="color: var(--accent-status);">PILOT_INIT // FINAL CTA</div>
+      <h2 style="margin: 0.5rem 0 1rem 0;">Test the evidence before committing to integration.</h2>
+      <p style="max-width: 700px; margin: 0 auto 1.5rem auto; font-size: 0.9rem;">A controlled pilot can establish whether verified allocation waste creates measurable value for the provider and its customers without requiring a production-network change.</p>
+      <a class="btn btn-primary" style="display: inline-block; max-width: 320px; width: 100%;">Discuss a Controlled Pilot</a>
+    </section>
+
+    <footer class="footer">
+      <div class="meta-tag">DISCLOSURE // MATURITY MATRIX</div>
+      <p>Urbyte has completed controlled proofs. It is not represented as deployed inside a carrier production environment. Live API integration, white-label deployment, churn reduction, SLAs and carrier-scale operation remain next proving work unless evidenced under a specific engagement.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
